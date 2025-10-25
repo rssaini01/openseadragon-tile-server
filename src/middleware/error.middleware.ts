@@ -6,9 +6,9 @@ export interface AppError extends Error {
 
 export const errorHandler = (
     err: AppError,
-    req: Request,
+    _req: Request,
     res: Response,
-    next: NextFunction
+    _next: NextFunction
 ): void => {
     const statusCode = err.statusCode || 500;
     const message = err.message || 'Internal Server Error';
@@ -25,7 +25,7 @@ export const errorHandler = (
 export const notFoundHandler = (
     req: Request,
     res: Response,
-    next: NextFunction
+    _next: NextFunction
 ): void => {
     res.status(404).json({
         error: 'Resource not found',

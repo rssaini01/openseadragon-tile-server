@@ -104,7 +104,7 @@ export class ImageController {
     /**
      * List all images
      */
-    async listImages(req: Request, res: Response, next: NextFunction): Promise<void> {
+    async listImages(_req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
             const images = await tileService.listImages();
 

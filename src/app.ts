@@ -32,7 +32,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/static', express.static(path.join(__dirname, '../public')));
 
 // Health check endpoint
-app.get('/health', (req, res) => {
+app.get('/health', (_req, res) => {
     res.json({
         status: 'OK',
         timestamp: new Date().toISOString(),
@@ -44,7 +44,7 @@ app.get('/health', (req, res) => {
 app.use('/api/images', imageRoutes);
 
 // Serve a test page
-app.get('/', (req, res) => {
+app.get('/', (_req, res) => {
     res.send(`
     <!DOCTYPE html>
     <html lang="en">
@@ -105,7 +105,7 @@ app.get('/', (req, res) => {
       <div class="container">
         <h1>🖼️ OpenSeadragon Tile Server</h1>
         <p>High-performance image tile server using Sharp and Express.js</p>
-        
+
         <div class="upload-form">
           <h2>Upload Image</h2>
           <form id="uploadForm" enctype="multipart/form-data">
@@ -153,17 +153,17 @@ OpenSeadragon({
           e.preventDefault();
           const formData = new FormData(e.target);
           const resultDiv = document.getElementById('result');
-          
+
           resultDiv.innerHTML = '<p>Uploading and generating tiles...</p>';
-          
+
           try {
             const response = await fetch('/api/images/upload', {
               method: 'POST',
               body: formData
             });
-            
+
             const data = await response.json();
-            
+
             if (response.ok) {
               resultDiv.innerHTML = \`
                 <div style="background: #d4edda; padding: 15px; margin-top: 15px; border-radius: 4px;">
@@ -194,13 +194,13 @@ app.use(errorHandler);
 // Start server
 app.listen(PORT, () => {
     console.log(`
-╔═══════════════════════════════════════════════════╗
-║   OpenSeadragon Tile Server                       ║
-║   Status: Running ✓                               ║
-║   Port: ${PORT}                                   ║
-║   Environment: ${process.env.NODE_ENV || 'development'}             ║
-║   URL: http://localhost:${PORT}                   ║
-╚═══════════════════════════════════════════════════╝
+╔═════════════════════════════════════════════════════╗
+║   OpenSeadragon Tile Server                         ║
+║   Status: Running ✓                                 ║
+║   Port: ${PORT}                                        ║
+║   Environment: ${process.env.NODE_ENV || 'development'}                          ║
+║   URL: http://localhost:${PORT}                        ║
+╚═════════════════════════════════════════════════════╝
   `);
 });
 
