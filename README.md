@@ -2,7 +2,7 @@
 
 A high-performance image tile server for OpenSeadragon using Node.js, TypeScript, Express, and Sharp (libvips).
 
-[![codecov](https://codecov.io/gh/rssaini01/openseadragon-tile-server/branch/main/graph/badge.svg)](https://codecov.io/gh/rssaini01/openseadragon-tile-server)
+[![codecov](https://codecov.io/github/rssaini01/openseadragon-tile-server/graph/badge.svg?token=5AXR7GP68U)](https://codecov.io/github/rssaini01/openseadragon-tile-server)
 
 ## Features
 
