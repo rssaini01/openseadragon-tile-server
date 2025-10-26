@@ -2,6 +2,8 @@
 
 A high-performance image tile server for OpenSeadragon using Node.js, TypeScript, Express, and Sharp (libvips).
 
+[![codecov](https://codecov.io/gh/USER/REPO/branch/main/graph/badge.svg)](https://codecov.io/gh/USER/REPO)
+
 ## Features
 
 - ✅ Deep Zoom Image (DZI) tile generation
