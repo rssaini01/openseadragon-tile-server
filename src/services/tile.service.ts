@@ -13,9 +13,7 @@ export class TileService {
 
   constructor() {
     this.tilesDir = process.env.TILES_DIR || 'tiles';
-    this.ensureTilesDirectory()
-      .then((r) => console.log(r))
-      .catch(console.error);
+    this.ensureTilesDirectory();
   }
 
   private async ensureTilesDirectory(): Promise<void> {

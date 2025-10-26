@@ -72,6 +72,8 @@ describe('TileService (Jest)', () => {
   });
 
   it('generateTiles creates metadata and returns ImageMetadata', async () => {
+    // Add mock input file to store
+    store.set('/tmp/input.png', Buffer.from('fake-image-data'));
     let savedDziPath = '';
     mockedSharpFactory = (_inputPath: string) => ({
       metadata: () => Promise.resolve({ width: 800, height: 600, size: 2000, format: 'png' }),
