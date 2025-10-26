@@ -103,15 +103,15 @@ curl http://localhost:3000/api/images/{imageId}/tiles/12/0/0
 
 ## API Reference
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| POST | `/api/images/upload` | Upload image and generate tiles |
-| GET | `/api/images` | List all images |
-| GET | `/api/images/:imageId/metadata` | Get image metadata |
-| GET | `/api/images/:imageId/dzi` | Get DZI XML descriptor |
-| GET | `/api/images/:imageId/dzi.json` | Get DZI JSON descriptor |
-| GET | `/api/images/:imageId/tiles/:level/:column/:row` | Get specific tile |
-| DELETE | `/api/images/:imageId` | Delete image and tiles |
+| Method | Endpoint                                         | Description                     |
+|--------|--------------------------------------------------|---------------------------------|
+| POST   | `/api/images/upload`                             | Upload image and generate tiles |
+| GET    | `/api/images`                                    | List all images                 |
+| GET    | `/api/images/:imageId/metadata`                  | Get image metadata              |
+| GET    | `/api/images/:imageId/dzi`                       | Get DZI XML descriptor          |
+| GET    | `/api/images/:imageId/dzi.json`                  | Get DZI JSON descriptor         |
+| GET    | `/api/images/:imageId/tiles/:level/:column/:row` | Get specific tile               |
+| DELETE | `/api/images/:imageId`                           | Delete image and tiles          |
 
 ## Configuration
 
@@ -137,7 +137,7 @@ Edit `.env` to customize:
 ### Docker (Optional)
 
 ```Dockerfile
-FROM node:18-alpine
+FROM node:22-alpine
 WORKDIR /app
 COPY package*.json ./
 RUN npm ci --only=production
