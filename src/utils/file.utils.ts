@@ -9,41 +9,41 @@ const stat = promisify(fs.stat);
 const rmdir = promisify(fs.rmdir);
 
 export const ensureDir = async (dirPath: string): Promise<void> => {
-    if (!fs.existsSync(dirPath)) {
-        await mkdir(dirPath, { recursive: true });
-    }
+  if (!fs.existsSync(dirPath)) {
+    await mkdir(dirPath, { recursive: true });
+  }
 };
 
 export const deleteFile = async (filePath: string): Promise<void> => {
-    if (fs.existsSync(filePath)) {
-        await unlink(filePath);
-    }
+  if (fs.existsSync(filePath)) {
+    await unlink(filePath);
+  }
 };
 
 export const deleteDirectory = async (dirPath: string): Promise<void> => {
-    if (!fs.existsSync(dirPath)) return;
+  if (!fs.existsSync(dirPath)) return;
 
-    const files = await readdir(dirPath);
+  const files = await readdir(dirPath);
 
-    for (const file of files) {
-        const filePath = path.join(dirPath, file);
-        const fileStat = await stat(filePath);
+  for (const file of files) {
+    const filePath = path.join(dirPath, file);
+    const fileStat = await stat(filePath);
 
-        if (fileStat.isDirectory()) {
-            await deleteDirectory(filePath);
-        } else {
-            await unlink(filePath);
-        }
+    if (fileStat.isDirectory()) {
+      await deleteDirectory(filePath);
+    } else {
+      await unlink(filePath);
     }
+  }
 
-    await rmdir(dirPath);
+  await rmdir(dirPath);
 };
 
 export const getFileExtension = (filename: string): string => {
-    return path.extname(filename).toLowerCase().replace('.', '');
+  return path.extname(filename).toLowerCase().replace('.', '');
 };
 
 export const generateImageId = (filename: string): string => {
-    const ext = path.extname(filename);
-    return path.basename(filename, ext);
+  const ext = path.extname(filename);
+  return path.basename(filename, ext);
 };

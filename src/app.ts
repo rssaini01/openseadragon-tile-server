@@ -15,14 +15,18 @@ const app: Application = express();
 const PORT = process.env.PORT || 3000;
 
 // Middleware
-app.use(helmet({
-    crossOriginResourcePolicy: { policy: 'cross-origin' }
-}));
-app.use(cors({
+app.use(
+  helmet({
+    crossOriginResourcePolicy: { policy: 'cross-origin' },
+  }),
+);
+app.use(
+  cors({
     origin: process.env.CORS_ORIGIN || '*',
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
-}));
+  }),
+);
 app.use(morgan('combined'));
 app.use(compression());
 app.use(express.json());
@@ -33,11 +37,11 @@ app.use('/static', express.static(path.join(__dirname, '../public')));
 
 // Health check endpoint
 app.get('/health', (_req, res) => {
-    res.json({
-        status: 'OK',
-        timestamp: new Date().toISOString(),
-        uptime: process.uptime(),
-    });
+  res.json({
+    status: 'OK',
+    timestamp: new Date().toISOString(),
+    uptime: process.uptime(),
+  });
 });
 
 // API routes
@@ -45,7 +49,7 @@ app.use('/api/images', imageRoutes);
 
 // Serve a test page
 app.get('/', (_req, res) => {
-    res.send(`
+  res.send(`
     <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -193,7 +197,7 @@ app.use(errorHandler);
 
 // Start server
 app.listen(PORT, () => {
-    console.log(`
+  console.log(`
 ╔═════════════════════════════════════════════════════╗
 ║   OpenSeadragon Tile Server                         ║
 ║   Status: Running ✓                                 ║

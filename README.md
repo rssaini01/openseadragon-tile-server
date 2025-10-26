@@ -23,12 +23,14 @@ A high-performance image tile server for OpenSeadragon using Node.js, TypeScript
 ## Installation
 
 1. Clone or create the project:
+
 ```shell
 mkdir openseadragon-tile-server
 cd openseadragon-tile-server
 ```
 
 2. Install dependencies:
+
 ```shell
 npm install
 ```
@@ -36,11 +38,13 @@ npm install
 3. Create `.env` file (see `.env` section above)
 
 4. Run in development:
+
 ```shell
 npm run dev
 ```
 
 5. Build for production:
+
 ```shell
 npm run build
 npm start
@@ -84,27 +88,27 @@ curl http://localhost:3000/api/images/{imageId}/tiles/12/0/0
 ```html
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/openseadragon/5.0.1/openseadragon.min.js"></script>
-</head>
-<body>
-  <div id="viewer" style="width: 100%; height: 600px;"></div>
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/openseadragon/5.0.1/openseadragon.min.js"></script>
+  </head>
+  <body>
+    <div id="viewer" style="width: 100%; height: 600px;"></div>
 
-  <script>
-    OpenSeadragon({
-      id: "viewer",
-      prefixUrl: "//openseadragon.github.io/openseadragon/images/",
-      tileSources: "http://localhost:3000/api/images/YOUR_IMAGE_ID/dzi"
-    });
-  </script>
-</body>
+    <script>
+      OpenSeadragon({
+        id: "viewer",
+        prefixUrl: "//openseadragon.github.io/openseadragon/images/",
+        tileSources: "http://localhost:3000/api/images/YOUR_IMAGE_ID/dzi",
+      });
+    </script>
+  </body>
 </html>
 ```
 
 ## API Reference
 
 | Method | Endpoint                                         | Description                     |
-|--------|--------------------------------------------------|---------------------------------|
+| ------ | ------------------------------------------------ | ------------------------------- |
 | POST   | `/api/images/upload`                             | Upload image and generate tiles |
 | GET    | `/api/images`                                    | List all images                 |
 | GET    | `/api/images/:imageId/metadata`                  | Get image metadata              |
@@ -158,11 +162,13 @@ pm2 save
 ## Troubleshooting
 
 **Sharp installation issues:**
+
 ```shell
 npm install --platform=linux --arch=x64 sharp
 ```
 
 **Large file uploads:**
+
 - Increase `MAX_FILE_SIZE` in `.env`
 - Configure nginx/Apache for large uploads
 
