@@ -83,9 +83,9 @@ curl http://localhost:3000/api/images/{imageId}/tiles/12/0/0
 
 ```html
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/openseadragon/4.1.0/openseadragon.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/openseadragon/5.0.1/openseadragon.min.js"></script>
 </head>
 <body>
   <div id="viewer" style="width: 100%; height: 600px;"></div>
