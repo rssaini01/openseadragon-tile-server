@@ -9,7 +9,7 @@ const writeFile = promisify(fs.writeFile);
 const readFile = promisify(fs.readFile);
 
 export class TileService {
-  private tilesDir: string;
+  private readonly tilesDir: string;
 
   constructor() {
     this.tilesDir = process.env.TILES_DIR || 'tiles';

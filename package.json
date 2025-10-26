@@ -8,6 +8,7 @@
     "build": "tsc",
     "start": "node dist/app.js",
     "clean": "rimraf dist",
+    "test": "jest --coverage",
     "prepare": "husky"
   },
   "keywords": [
@@ -34,12 +35,15 @@
     "@types/compression": "^1.7.5",
     "@types/cors": "^2.8.17",
     "@types/express": "^5.0.1",
+    "@types/jest": "^30.0.0",
     "@types/morgan": "^1.9.9",
     "@types/multer": "^2.0.0",
     "@types/node": "^22.18.12",
     "editorconfig-checker": "^6.1.1",
     "husky": "^9.1.7",
+    "jest": "^30.2.0",
     "rimraf": "^6.0.1",
+    "ts-jest": "^29.4.5",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.5.0"
   }
