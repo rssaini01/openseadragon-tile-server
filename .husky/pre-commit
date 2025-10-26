@@ -1,0 +1,6 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+npx editorconfig-checker
+# OR, to auto-format with Prettier
+npx prettier --write .
