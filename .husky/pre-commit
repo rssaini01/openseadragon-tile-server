@@ -1,3 +1,4 @@
 #!/bin/sh
 
-npx editorconfig-checker
+npx prettier --write "**/*.{ts,tsx,js,jsx,mjs,cjs,json,md}"
+git add -u

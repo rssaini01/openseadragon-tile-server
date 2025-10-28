@@ -8,11 +8,7 @@ export class ImageController {
   /**
    * Upload and process image
    */
-  async uploadImage(
-    req: Request,
-    res: Response,
-    next: NextFunction,
-  ): Promise<void> {
+  async uploadImage(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       if (!req.file) {
         res.status(400).json({ error: 'No file uploaded' });
@@ -26,11 +22,7 @@ export class ImageController {
         quality: req.body.quality ? parseInt(req.body.quality) : undefined,
       };
 
-      const metadata = await tileService.generateTiles(
-        req.file.path,
-        req.file.filename,
-        options,
-      );
+      const metadata = await tileService.generateTiles(req.file.path, req.file.filename, options);
 
       res.status(201).json({
         message: 'Image uploaded and tiles generated successfully',
@@ -59,11 +51,7 @@ export class ImageController {
   /**
    * Get DZI JSON descriptor
    */
-  async getDziJson(
-    req: Request,
-    res: Response,
-    next: NextFunction,
-  ): Promise<void> {
+  async getDziJson(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       const { imageId } = req.params;
       const dziJson = await tileService.getDziJson(imageId);
@@ -77,11 +65,7 @@ export class ImageController {
   /**
    * Get specific tile
    */
-  async getTile(
-    req: Request,
-    res: Response,
-    next: NextFunction,
-  ): Promise<void> {
+  async getTile(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       const { imageId, level, column, row } = req.params;
 
@@ -89,7 +73,7 @@ export class ImageController {
         imageId,
         parseInt(level),
         parseInt(column),
-        parseInt(row.replace(/\.(jpeg|jpg|png|webp)$/, '')),
+        parseInt(row.replace(/\.(jpeg|jpg|png|webp)$/, ''))
       );
 
       res.set('Content-Type', 'image/jpeg');
@@ -102,11 +86,7 @@ export class ImageController {
   /**
    * Get image metadata
    */
-  async getMetadata(
-    req: Request,
-    res: Response,
-    next: NextFunction,
-  ): Promise<void> {
+  async getMetadata(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       const { imageId } = req.params;
       const metadata = await tileService.getMetadata(imageId);
@@ -120,11 +100,7 @@ export class ImageController {
   /**
    * List all images
    */
-  async listImages(
-    _req: Request,
-    res: Response,
-    next: NextFunction,
-  ): Promise<void> {
+  async listImages(_req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       const images = await tileService.listImages();
 
@@ -140,11 +116,7 @@ export class ImageController {
   /**
    * Delete image
    */
-  async deleteImage(
-    req: Request,
-    res: Response,
-    next: NextFunction,
-  ): Promise<void> {
+  async deleteImage(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       const { imageId } = req.params;
       await tileService.deleteImage(imageId);

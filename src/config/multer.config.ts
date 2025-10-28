@@ -23,14 +23,8 @@ const storage = multer.diskStorage({
 });
 
 // File filter for allowed image types
-const fileFilter = (
-  _req: Request,
-  file: Express.Multer.File,
-  cb: FileFilterCallback,
-) => {
-  const allowedFormats = (
-    process.env.ALLOWED_FORMATS || 'image/jpeg,image/png,image/tiff,image/webp'
-  ).split(',');
+const fileFilter = (_req: Request, file: Express.Multer.File, cb: FileFilterCallback) => {
+  const allowedFormats = (process.env.ALLOWED_FORMATS || 'image/jpeg,image/png,image/tiff,image/webp').split(',');
 
   if (allowedFormats.includes(file.mimetype)) {
     cb(null, true);
