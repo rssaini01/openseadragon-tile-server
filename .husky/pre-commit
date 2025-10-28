@@ -1,4 +1,4 @@
 #!/bin/sh
 
-npx prettier --write "**/*.{ts,tsx,js,jsx,mjs,cjs,json,md}"
+npx prettier --write .
 git add -u
