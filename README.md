@@ -98,9 +98,9 @@ curl http://localhost:3000/api/images/{imageId}/tiles/12/0/0
 
     <script>
       OpenSeadragon({
-        id: "viewer",
-        prefixUrl: "//openseadragon.github.io/openseadragon/images/",
-        tileSources: "http://localhost:3000/api/images/YOUR_IMAGE_ID/dzi",
+        id: 'viewer',
+        prefixUrl: '//openseadragon.github.io/openseadragon/images/',
+        tileSources: 'http://localhost:3000/api/images/YOUR_IMAGE_ID/dzi',
       });
     </script>
   </body>

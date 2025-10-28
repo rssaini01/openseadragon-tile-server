@@ -23,11 +23,7 @@ export class TileService {
   /**
    * Generate DZI tiles for an uploaded image
    */
-  async generateTiles(
-    filePath: string,
-    filename: string,
-    options?: TileGenerationOptions,
-  ): Promise<ImageMetadata> {
+  async generateTiles(filePath: string, filename: string, options?: TileGenerationOptions): Promise<ImageMetadata> {
     const imageId = generateImageId(filename);
     const outputDir = path.join(this.tilesDir, imageId);
 
@@ -42,16 +38,10 @@ export class TileService {
     }
 
     // Tile generation options
-    const tileSize =
-      options?.tileSize || parseInt(process.env.TILE_SIZE || '256');
-    const overlap =
-      options?.overlap || parseInt(process.env.TILE_OVERLAP || '1');
-    const format =
-      options?.format ||
-      (process.env.TILE_FORMAT as 'jpeg' | 'png' | 'webp') ||
-      'jpeg';
-    const quality =
-      options?.quality || parseInt(process.env.TILE_QUALITY || '80');
+    const tileSize = options?.tileSize || parseInt(process.env.TILE_SIZE || '256');
+    const overlap = options?.overlap || parseInt(process.env.TILE_OVERLAP || '1');
+    const format = options?.format || (process.env.TILE_FORMAT as 'jpeg' | 'png' | 'webp') || 'jpeg';
+    const quality = options?.quality || parseInt(process.env.TILE_QUALITY || '80');
 
     // Generate tiles using Sharp's tile() method
     const outputPath = path.join(outputDir, 'image');
@@ -111,19 +101,8 @@ export class TileService {
   /**
    * Get tile for specific level, column, and row
    */
-  async getTile(
-    imageId: string,
-    level: number,
-    column: number,
-    row: number,
-  ): Promise<Buffer> {
-    const tilePath = path.join(
-      this.tilesDir,
-      imageId,
-      'image_files',
-      level.toString(),
-      `${column}_${row}.jpeg`,
-    );
+  async getTile(imageId: string, level: number, column: number, row: number): Promise<Buffer> {
+    const tilePath = path.join(this.tilesDir, imageId, 'image_files', level.toString(), `${column}_${row}.jpeg`);
 
     if (!fs.existsSync(tilePath)) {
       // Try other formats
@@ -134,7 +113,7 @@ export class TileService {
           imageId,
           'image_files',
           level.toString(),
-          `${column}_${row}.${format}`,
+          `${column}_${row}.${format}`
         );
         if (fs.existsSync(altPath)) {
           return await readFile(altPath);
@@ -197,10 +176,7 @@ export class TileService {
   /**
    * Save image metadata
    */
-  private async saveMetadata(
-    imageId: string,
-    metadata: ImageMetadata,
-  ): Promise<void> {
+  private async saveMetadata(imageId: string, metadata: ImageMetadata): Promise<void> {
     const metadataPath = path.join(this.tilesDir, imageId, 'metadata.json');
     await writeFile(metadataPath, JSON.stringify(metadata, null, 2));
   }

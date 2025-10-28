@@ -7,13 +7,7 @@ jest.mock('util', () => ({
 import * as fs from 'fs';
 import * as path from 'path';
 
-import {
-  ensureDir,
-  deleteFile,
-  deleteDirectory,
-  getFileExtension,
-  generateImageId,
-} from './file.utils';
+import { ensureDir, deleteFile, deleteDirectory, getFileExtension, generateImageId } from './file.utils';
 
 describe('file.utils', () => {
   beforeEach(() => {
@@ -57,6 +51,17 @@ describe('file.utils', () => {
       (fs.existsSync as jest.Mock).mockReturnValue(false);
       await deleteDirectory('/empty');
       expect(fs.existsSync).toHaveBeenCalledWith('/empty');
+    });
+
+    it('deletes file if it exists', async () => {
+      jest.spyOn(fs, 'existsSync').mockReturnValue(true);
+      const unlinkMock = jest.spyOn(fs, 'unlink').mockImplementation((_, cb) => {
+        cb?.(null);
+        return undefined as any;
+      });
+
+      await deleteFile('/tmp/file.txt');
+      expect(unlinkMock).toHaveBeenCalledWith('/tmp/file.txt');
     });
   });
 

@@ -78,10 +78,28 @@ describe('TileService (Jest)', () => {
     mockedSharpFactory = (_inputPath: string) => ({
       metadata: () => Promise.resolve({ width: 800, height: 600, size: 2000, format: 'png' }),
       tile: () => ({
-        jpeg: () => ({ toFile: (p: string) => { savedDziPath = p; return Promise.resolve(); } }),
-        png: () => ({ toFile: (p: string) => { savedDziPath = p; return Promise.resolve(); } }),
-        webp: () => ({ toFile: (p: string) => { savedDziPath = p; return Promise.resolve(); } }),
-        toFile: (p: string) => { savedDziPath = p; return Promise.resolve(); },
+        jpeg: () => ({
+          toFile: (p: string) => {
+            savedDziPath = p;
+            return Promise.resolve();
+          },
+        }),
+        png: () => ({
+          toFile: (p: string) => {
+            savedDziPath = p;
+            return Promise.resolve();
+          },
+        }),
+        webp: () => ({
+          toFile: (p: string) => {
+            savedDziPath = p;
+            return Promise.resolve();
+          },
+        }),
+        toFile: (p: string) => {
+          savedDziPath = p;
+          return Promise.resolve();
+        },
       }),
     });
 
